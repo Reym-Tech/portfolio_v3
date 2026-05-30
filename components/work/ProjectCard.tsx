@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+
 import type { Project } from '@/lib/projects';
 
 // John Remy: one painting, framed. The cover holds a 4:3 image when you have one, and

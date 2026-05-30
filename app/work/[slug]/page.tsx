@@ -2,18 +2,21 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+
+import { PortableContent } from '@/components/shared/PortableContent';
 import { getAllProjects, getProjectBySlug } from '@/lib/projects';
 
 interface ProjectPageProps {
   params: { slug: string };
 }
 
-export function generateStaticParams() {
-  return getAllProjects().map((project) => ({ slug: project.slug }));
+export async function generateStaticParams() {
+  const projects = await getAllProjects();
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
-export function generateMetadata({ params }: ProjectPageProps): Metadata {
-  const project = getProjectBySlug(params.slug);
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+  const project = await getProjectBySlug(params.slug);
   if (!project) return { title: 'Not Found' };
 
   return {
@@ -22,8 +25,8 @@ export function generateMetadata({ params }: ProjectPageProps): Metadata {
   };
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = getProjectBySlug(params.slug);
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const project = await getProjectBySlug(params.slug);
   if (!project) notFound();
 
   return (
@@ -66,10 +69,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         )}
       </div>
 
-      <div className="mt-12 max-w-2xl space-y-6 font-body text-lg leading-relaxed text-ink/70">
-        {project.description.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+      <div className="mt-12 max-w-2xl">
+        <PortableContent value={project.body} />
       </div>
 
       <ul className="mt-10 flex flex-wrap gap-2">

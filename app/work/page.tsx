@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
-import { getAllProjects } from '@/lib/projects';
+
 import { ProjectGrid } from '@/components/work/ProjectGrid';
+import { getAllProjects } from '@/lib/projects';
 
 export const metadata: Metadata = {
   title: 'Selected Works',
   description: 'Selected works and projects by John Remy C. Gonzales.',
 };
 
-export default function WorkPage() {
-  const projects = getAllProjects();
+export default async function WorkPage() {
+  const projects = await getAllProjects();
 
   return (
     <section className="mx-auto w-full max-w-7xl px-6 pt-32 pb-24 md:px-8">

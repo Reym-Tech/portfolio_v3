@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import { getFeaturedProjects } from '@/lib/projects';
+
 import { ProjectGrid } from '@/components/work/ProjectGrid';
+import { getFeaturedProjects } from '@/lib/projects';
 
 // John Remy: the visitor meets the work moments after meeting the name — a curated
 // few, then a quiet door to the rest. Show, don't tell.
-export function FeaturedWork() {
-  const projects = getFeaturedProjects();
+export async function FeaturedWork() {
+  const projects = await getFeaturedProjects();
   if (projects.length === 0) return null;
 
   return (

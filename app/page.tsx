@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
-import { Hero } from '@/components/home/Hero';
+
 import { FeaturedWork } from '@/components/home/FeaturedWork';
+import { Hero } from '@/components/home/Hero';
+import { ContactCTA } from '@/components/shared/ContactCTA';
 import { SectionDivider } from '@/components/shared/SectionDivider';
 
 export const metadata: Metadata = {
@@ -14,6 +16,8 @@ export default function HomePage() {
       <Hero />
       <SectionDivider />
       <FeaturedWork />
+      <SectionDivider />
+      <ContactCTA />
     </>
   );
 }

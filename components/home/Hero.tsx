@@ -1,7 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+import dynamic from 'next/dynamic';
+
 import { fadeInUp, staggerContainer } from '@/lib/motion';
+
+// The 3D scene is heavy and browser-only — load it client-side, never in SSR.
+const HeroScene = dynamic(() => import('./HeroScene'), { ssr: false });
 
 const EMAIL = 'johnremygonzales20@gmail.com';
 
@@ -9,13 +14,24 @@ const EMAIL = 'johnremygonzales20@gmail.com';
 // Motion enters quickly and never holds the identity hostage. The lone primary-blue
 // element is the invitation to connect; nothing else competes for the eye (DESIGN.md §1).
 export function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section className="relative flex min-h-screen items-center px-6 md:px-8">
+    <section className="relative flex min-h-screen items-center overflow-hidden px-6 md:px-8">
+      {!prefersReducedMotion && (
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 opacity-90 md:block"
+        >
+          <HeroScene />
+        </div>
+      )}
+
       <motion.div
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="mx-auto w-full max-w-7xl"
+        className="relative z-10 mx-auto w-full max-w-7xl"
       >
         <motion.p
           variants={fadeInUp}

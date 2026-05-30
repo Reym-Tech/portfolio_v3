@@ -19,17 +19,35 @@ export default {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: 'description',
-      title: 'Description',
-      type: 'text',
+      name: 'summary',
+      title: 'Summary',
+      description: 'One restrained line shown on the project card.',
+      type: 'string',
     },
     {
-      name: 'image',
+      name: 'role',
+      title: 'Role',
+      type: 'string',
+    },
+    {
+      name: 'year',
+      title: 'Year',
+      type: 'string',
+    },
+    {
+      name: 'coverImage',
       title: 'Cover Image',
       type: 'image',
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          type: 'string',
+        },
+      ],
     },
     {
       name: 'tags',
@@ -38,15 +56,39 @@ export default {
       of: [{ type: 'string' }],
     },
     {
-      name: 'publishedAt',
-      title: 'Published At',
-      type: 'datetime',
+      name: 'body',
+      title: 'Case Study',
+      description: 'Rich content shown on the project detail page.',
+      type: 'array',
+      of: [{ type: 'block' }, { type: 'image', options: { hotspot: true } }],
+    },
+    {
+      name: 'liveUrl',
+      title: 'Live URL',
+      type: 'url',
+    },
+    {
+      name: 'sourceUrl',
+      title: 'Source URL',
+      type: 'url',
+    },
+    {
+      name: 'featured',
+      title: 'Featured',
+      description: 'Show on the home page.',
+      type: 'boolean',
+    },
+    {
+      name: 'order',
+      title: 'Order',
+      description: 'Lower numbers appear first.',
+      type: 'number',
     },
   ],
   preview: {
     select: {
       title: 'title',
-      media: 'image',
+      media: 'coverImage',
     },
   },
 };
