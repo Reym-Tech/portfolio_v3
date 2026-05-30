@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Anonymous+Pro:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Google Sans is proprietary and not served by Google Fonts; Inter is the
+     closest open substitute and loads as the functional fallback (ELEGANT_DESIGN.md). */
+  --font-display: 'Google Sans', 'Inter', system-ui, sans-serif;
+  --font-body: 'Google Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'Anonymous Pro', ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-surface text-ink;
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* Typography — delicate weights, tight tracking (ELEGANT_DESIGN.md) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  @apply text-3xl;
+}
+
+h2 {
+  @apply text-2xl;
+}
+
+h3 {
+  @apply text-xl;
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+/* Custom cursor: hide the native pointer only once ours is mounted (fine pointers) */
+.has-custom-cursor,
+.has-custom-cursor a,
+.has-custom-cursor button {
+  cursor: none;
+}
+
+/* Focus states */
+:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-surface;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-surface;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-ink/15 hover:bg-primary/50;
+  border-radius: 4px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
