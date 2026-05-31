@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 import { fadeInUp, staggerContainer } from '@/lib/motion';
 
@@ -35,8 +36,8 @@ export function ContactCTA() {
         variants={fadeInUp}
         className="mt-10 flex flex-wrap items-center gap-8"
       >
-        <a
-          href={`mailto:${EMAIL}`}
+        <Link
+          href="/contact"
           className="group inline-flex items-center gap-3 font-body text-base text-primary transition-colors duration-300 hover:text-primary/80"
         >
           Start a conversation
@@ -46,7 +47,7 @@ export function ContactCTA() {
           >
             →
           </span>
-        </a>
+        </Link>
         <a
           href={`mailto:${EMAIL}`}
           className="font-body text-base text-ink/70 transition-colors duration-300 hover:text-ink"

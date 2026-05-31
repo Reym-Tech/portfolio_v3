@@ -10,10 +10,11 @@ const SCROLL_THRESHOLD = 80;
 const LINKS = [
   { href: '/work', label: 'Work' },
   { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ] as const;
 
 // John Remy: the bar stays invisible until the page moves beneath it, then settles
-// into frosted white (DESIGN.md §7). Restraint — two links, one signature.
+// into frosted white (DESIGN.md §7). Restraint — a short link set, one signature.
 export function Navigation() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);

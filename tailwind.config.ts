@@ -19,7 +19,13 @@ const config: Config = {
         // chips need one quiet step of elevation against the white page.
         'surface-muted': '#F3F4F6',
         ink: '#111827', // ELEGANT "text" token
-        neutral: '#FFFFFF',
+        neutral: {
+          // ELEGANT alias of surface; gray ramp derived for card borders and quiet meta
+          // text, anchored on ink (#111827 ≈ gray-900) and surface (#FFFFFF).
+          DEFAULT: '#FFFFFF',
+          200: '#E5E7EB',
+          500: '#6B7280',
+        },
       },
       fontFamily: {
         display: ['var(--font-display)', 'system-ui', 'sans-serif'],

@@ -53,3 +53,5 @@ Graceful, refined aesthetic with delicate typography, minimal palettes, and poli
 - **Surface (#FFFFFF):** Token from style foundations.
 - **Text (#111827):** Token from style foundations.
 - **Neutral (#FFFFFF):** Derived from the surface token for official format compatibility.
+- **Neutral-200 (#E5E7EB):** Derived — added to `tailwind.config.ts` as a gray-ramp step (anchored on ink #111827 ≈ gray-900 and surface #FFFFFF) for hairline card borders.
+- **Neutral-500 (#6B7280):** Derived — added to `tailwind.config.ts` from the same gray ramp for quiet meta text (issuer, date, mono labels).
